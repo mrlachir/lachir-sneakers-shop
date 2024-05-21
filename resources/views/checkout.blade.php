@@ -56,6 +56,7 @@
                     <button type="submit">Purchase</button>
                     <a href="{{ route('carts.index') }}" class="button">Back to cart</a>
                 </div>
+                {{-- hello from another commit --}}
             </form>
         </div>
     </div>
