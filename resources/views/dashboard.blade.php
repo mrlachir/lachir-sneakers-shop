@@ -1,4 +1,4 @@
-@include('layouts.navigation')
+{{-- @include('layouts.navigation') --}}
 <div class="content-sidebar">
     <x-app-layout>
 

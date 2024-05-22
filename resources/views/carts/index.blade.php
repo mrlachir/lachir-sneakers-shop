@@ -54,8 +54,12 @@
                         @endforeach
                         <div class="mt-4">
                             <p>Total Price: ${{ $totalPrice }}</p>
-                            <button
-                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Checkout</button>
+                            
+                            <form action="{{ route('checkout.show') }}">
+                                @csrf
+                                {{-- @method('DELETE') --}}
+                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Checkout</button>
+                            </form>
                             <!-- Add this button wherever you want to display the clear cart button -->
                             <form action="{{ route('cart.clear') }}" method="POST">
                                 @csrf

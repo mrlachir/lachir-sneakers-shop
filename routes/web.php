@@ -165,8 +165,9 @@ Route::delete('/admin/sneakers/{sneaker}', [SneakerController::class, 'destroy']
 
 use App\Http\Controllers\CheckoutController;
 
-Route::get('/checkout', [CheckoutController::class, 'showCheckoutForm'])->name('checkout.show');
-Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->name('checkout.process');
+Route::get('/checkout', [CheckoutController::class, 'showCheckoutForm'])->middleware(['auth', 'verified'])->name('checkout.show');
+Route::post('/checkout', [CheckoutController::class, 'processCheckout'])->middleware(['auth', 'verified'])->name('checkout.process');
+Route::get('/order-confirmation', [CheckoutController::class, 'showOrderConfirmation'])->name('order.confirmation');
 
 
 

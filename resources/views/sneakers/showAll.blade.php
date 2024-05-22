@@ -280,6 +280,8 @@
                             </div>
                         </div>
                     </a>
+                    {{-- @else
+                        <div class="text-center w-full">No sneakers found.</div> --}}
                     @endif
                     @empty
                         <div class="text-center w-full">No sneakers found.</div>

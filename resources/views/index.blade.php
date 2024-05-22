@@ -55,10 +55,12 @@
                     </h2>
 
                 </div>
-                @php
+                {{-- @php
                     $brandName = 'nike'; // This can be a dynamic value
-                @endphp
-                <button onclick="window.location.href='{{ url('all/sneakers/brand/' . $brandName) }}'" class="view-all-btn ">View all</button>
+                @endphp --}}
+                <a href="all/sneakers">
+                    <button class="view-all-btn ">View all</button>
+                </a>
 
 
                 <div class="images-tag flex items-center justify-center mt-2 gap-3">

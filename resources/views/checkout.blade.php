@@ -10,11 +10,11 @@
                 <div class="name">
                     <div>
                         <label for="f-name">First Name</label>
-                        <input type="text" name="f-name" required>
+                        <input type="text" name="first_name" required>
                     </div>
                     <div>
                         <label for="l-name">Last Name</label>
-                        <input type="text" name="l-name" required>
+                        <input type="text" name="last_name" required>
                     </div>
                 </div>
                 <div class="street">
@@ -27,12 +27,12 @@
                         <input type="text" name="city" required>
                     </div>
                     <div>
-                        <label for="state">State</label>
+                        <label for="state">Region</label>
                         <input type="text" name="state" required>
                     </div>
                     <div>
                         <label for="zip">Zip Code</label>
-                        <input type="text" name="zip" required>
+                        <input type="text" name="zip_code" required>
                     </div>
                 </div>
                 <h1>
@@ -40,23 +40,22 @@
                 </h1>
                 <div class="cc-num">
                     <label for="card-num">Credit Card No.</label>
-                    <input type="text" name="card-num" required>
+                    <input type="text" name="credit_card_no" required>
                 </div>
                 <div class="cc-info">
                     <div>
                         <label for="expire">Exp</label>
-                        <input type="text" name="expire" required>
+                        <input type="text" name="exp" required>
                     </div>
                     <div>
-                        <label for="security">CCV</label>
-                        <input type="text" name="security" required>
+                        <label for="ccv">CCV</label>
+                        <input type="text" name="ccv" required>
                     </div>
                 </div>
                 <div class="btns">
-                    <button type="submit">Purchase</button>
+                    <button type="submit">Pay ${{$totalPrice}}</button>
                     <a href="{{ route('carts.index') }}" class="button">Back to cart</a>
                 </div>
-                {{-- hello from another commit --}}
             </form>
         </div>
     </div>
