@@ -140,8 +140,9 @@
         </svg>
         <p>Best Sneakers Shop in The Lmarrok</p>
         <ul class="socials">
-            <li><a href="#"><i class="fa fa-facebook">About Us</i></a></li>
-            <li><a href="#"><i class="fa fa-twitter">Contact Us</i></a></li>
+
+            <li><a href="{{ route('about.us') }}"><i class="fa fa-facebook">About Us</i></a></li>
+            <li><a href="{{ route('contact.us') }}"><i class="fa fa-twitter">Contact Us</i></a></li>
         </ul>
         <div class="w-socials-list flex">
             <div class="w-socials-item instagram">
@@ -181,10 +182,14 @@
 
     <div class="newsletter-signup">
         <h3>Sign up for our newsletter</h3>
-        <form action="/newsletter-subscription" method="POST">
+        <form action="{{ route('newsletter.subscription') }}" method="POST">
+            @csrf
             <input type="email" name="email" placeholder="Enter your email" required>
             <button type="submit">Subscribe</button>
         </form>
+
+
+        
         <p class="flex methods-of-payment">
             <img loading="lazy"
                 src="//www.secretsneakerstore.com/cdn/shop/t/146/assets/afterpay.svg?v=11582377357172421221702963055"

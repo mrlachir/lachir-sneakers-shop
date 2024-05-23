@@ -109,24 +109,35 @@ class SneakerController extends Controller
         $existingColors = Sneaker::pluck('color_code')->unique()->toArray();
         $existingBrands = Brand::pluck('name')->toArray();
         $existingCategories = Category::pluck('name')->toArray();
-    
-        $query = Sneaker::query();
+        
+        $search = $request->input('search');
+
+        $query = Sneaker::with(['brand', 'category'])
+            ->when($search, function($query, $search) {
+                return $query->where('name', 'LIKE', "%{$search}%")
+                             ->orWhere('description', 'LIKE', "%{$search}%")
+                             ->orWhereHas('brand', function($query) use ($search) {
+                                 $query->where('name', 'LIKE', "%{$search}%");
+                             })
+                             ->orWhereHas('category', function($query) use ($search) {
+                                 $query->where('name', 'LIKE', "%{$search}%");
+                             });
+            });
+        
         $this->applyFiltersAndSorting($request, $query);
         $sneakers = $query->paginate(10);
-
-        // $query->groupBy('price');
 
         $categories = Category::all();
         $brands = Brand::all();
         $title = 'All Sneakers';
     
-        return view('sneakers.showAll', compact('sneakers', 'title', 'categories', 'brands', 'existingNames', 'existingColors', 'existingBrands', 'existingCategories'));
+        return view('sneakers.showAll', compact('sneakers', 'title', 'categories', 'brands', 'existingNames', 'existingColors', 'existingBrands', 'existingCategories', 'search'));
     }
     
     public function filterByBrand(Request $request, $brand)
     {
         $brand = Brand::where('name', $brand)->firstOrFail();
-        $title = 'Sneakers by Brand: ' . $brand->name;
+        $title = $brand->name;
     
         $query = Sneaker::where('brand_id', $brand->id);
         $this->applyFiltersAndSorting($request, $query);
@@ -145,7 +156,7 @@ class SneakerController extends Controller
     public function filterByCategory(Request $request, $category)
     {
         $category = Category::where('name', $category)->firstOrFail();
-        $title = 'Sneakers by Category: ' . $category->name;
+        $title = $category->name;
     
         $query = Sneaker::where('category_id', $category->id);
         $this->applyFiltersAndSorting($request, $query);

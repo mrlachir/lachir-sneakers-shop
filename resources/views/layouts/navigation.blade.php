@@ -101,19 +101,18 @@
 
                 <!-- right: Settings Dropdown -->
                 <div class="hidden sm:flex sm:items-center sm:ml-6">
-                    {{-- search bar --}}
-                    <div class="hidden sm:flex sm:items-center sm:ml-6">
-                        <div class="relative">
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                                <svg class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                                </svg>
+                    <form class="Retrieve" action="{{ route('sneakers.showAll.all') }}" method="GET" class="mb-4">
+                        <div class="hidden sm:flex sm:items-center sm:ml-6">
+                            <div class="relative">
+                                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                    <svg class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <input type="text" name="search" id="search" style="border-radius: 10px;" class="block w-full pl-10 pr-2 py-1 border border-gray-300 leading-5 bg-white placeholder-gray-500 shadow-sm focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-gray-600 focus:border-gray-600 sm:text-sm" placeholder="Search..." value="{{ request('search') }}">
                             </div>
-                            <input type="text" name="search" id="search" style="border-radius: 10px;" class="block w-full pl-10 pr-2 py-1 border border-gray-300 leading-5 bg-white placeholder-gray-500 shadow-sm focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-gray-600 focus:border-gray-600 sm:text-sm" placeholder="Search...">
                         </div>
-                        <!-- Settings Dropdown -->
-                        <!-- Add the rest of your existing right section elements here -->
-                    </div>
+                    </form>
             
 
                     {{-- cart icon --}}
