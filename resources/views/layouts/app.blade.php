@@ -33,8 +33,8 @@
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
-        @include('layouts.navigation')
+    <div class="min-h-screen ">
+        {{-- @include('layouts.navigation') --}}
         {{-- @include('layouts.sidebarmenu') --}}
 
 
@@ -56,4 +56,5 @@
     @stack('scripts')
 </body>
 
-</html> @include('layouts.footer')
+</html> 
+

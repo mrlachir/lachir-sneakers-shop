@@ -1,3 +1,4 @@
+@include('layouts.navigation')
 <x-app-layout>
     <div class="container mx-auto px-4">
         <!-- Sneaker Details -->
@@ -170,4 +171,6 @@
     </script>
 
 </x-app-layout>
+@include('layouts.footer')
+
 

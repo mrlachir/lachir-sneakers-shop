@@ -1,3 +1,5 @@
+
+@include('layouts.navigation')
 <x-app-layout>
     <div class="container mx-auto px-4 py-8">
         <div class="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-lg">
@@ -17,3 +19,4 @@
         </div>
     </div>
 </x-app-layout>
+@include('layouts.footer')

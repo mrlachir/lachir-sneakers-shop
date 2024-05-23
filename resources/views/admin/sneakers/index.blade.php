@@ -1,5 +1,7 @@
 <!-- resources/views/admin/sneakers/index.blade.php -->
+@extends('layouts.sidebarmenu')
 
+@section('content')
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -103,20 +105,20 @@
                     </div>
                     <div class="mt-2 flex items-center">
                         <select id="sort_by" name="sort_by" class="block w-full max-w-xs">
-                            <option value="size_asc" {{ request('sort_by') == 'size_asc' ? 'selected' : '' }}>Size (Low to High)</option>
-                            <option value="size_desc" {{ request('sort_by') == 'size_desc' ? 'selected' : '' }}>Size (High to Low)</option>
+                            <option value="size_asc" {{ request('sort_by') == 'size_asc' ? 'selected' : '' }}>Size (L to H)</option>
+                            <option value="size_desc" {{ request('sort_by') == 'size_desc' ? 'selected' : '' }}>Size (H to L)</option>
                         </select>
                     </div>
                     <div class="mt-2 flex items-center">
                         <select id="sort_by" name="sort_by" class="block w-full max-w-xs">
-                            <option value="stock_asc" {{ request('sort_by') == 'stock_asc' ? 'selected' : '' }}>Stock (Low to High)</option>
-                            <option value="stock_desc" {{ request('sort_by') == 'stock_desc' ? 'selected' : '' }}>Stock (High to Low)</option>
+                            <option value="stock_asc" {{ request('sort_by') == 'stock_asc' ? 'selected' : '' }}>Stock (L to H)</option>
+                            <option value="stock_desc" {{ request('sort_by') == 'stock_desc' ? 'selected' : '' }}>Stock (H to L)</option>
                         </select>
                     </div>
                     <div class="mt-2 flex items-center">
                         <select id="sort_by" name="sort_by" class="block w-full max-w-xs">
-                            <option value="price_asc" {{ request('sort_by') == 'price_asc' ? 'selected' : '' }}>Price (Low to High)</option>
-                            <option value="price_desc" {{ request('sort_by') == 'price_desc' ? 'selected' : '' }}>Price (High to Low)</option>
+                            <option value="price_asc" {{ request('sort_by') == 'price_asc' ? 'selected' : '' }}>Price (L to H)</option>
+                            <option value="price_desc" {{ request('sort_by') == 'price_desc' ? 'selected' : '' }}>Price (H to L)</option>
                         </select>
                     </div>
                     <div class="mt-2 flex justify-end">
@@ -183,3 +185,5 @@
         </div>
     </div>
 </x-app-layout>
+@endsection
+

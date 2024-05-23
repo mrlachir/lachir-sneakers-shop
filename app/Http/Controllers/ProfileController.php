@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use App\Models\Order;
-use App\Models\OrderItem;
 
 class ProfileController extends Controller
 {
@@ -21,6 +20,23 @@ class ProfileController extends Controller
         return view('profile.edit', [
             'user' => $request->user(),
         ]);
+    }
+    
+    /**
+     * Show the user's profile with order details.
+     */
+    public function show(Request $request): View
+    {
+        $user = Auth::user();
+        
+        $query = Order::query();
+        $query->where('user_id', $user->id)->with('sneaker');
+        $orders = $query->paginate(5);
+        
+        $orderss = Order::where('user_id', $user->id)->with('sneaker')->get();
+        $totalSpent = $orderss->sum('total_price');
+
+        return view('profile.edit', compact('user', 'orders', 'totalSpent'));
     }
 
     /**
@@ -59,20 +75,4 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
-
-    public function showOrderHistory(Request $request): View
-{
-    $user = $request->user();
-
-    $orders = $user->orders()
-        ->with(['orderItems.product', 'shippingDetails', 'billingDetails'])
-        ->latest()
-        ->paginate(10);
-
-    return view('profile.show_order_history', [
-        'user' => $user,
-        'orders' => $orders,
-    ]);
-}
-
 }

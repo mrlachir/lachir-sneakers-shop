@@ -1,3 +1,5 @@
+@include('layouts.navigation')
+
 <x-app-layout>
     <div>
         <!-- slides -->
@@ -218,3 +220,4 @@
         transform: scale(1.1);
     }
 </style>
+@include('layouts.footer')

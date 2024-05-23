@@ -74,4 +74,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Cart::class);
     }
+    public function isAdmin()
+    {
+        // Example logic to determine if the user is an admin
+        return $this->role === 'admin'; // Assuming you have a 'role' column in your users table
+    }
 }

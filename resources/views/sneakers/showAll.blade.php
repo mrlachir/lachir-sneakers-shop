@@ -1,5 +1,7 @@
 <!-- resources/views/admin/sneakers/index.blade.php -->
 
+
+@include('layouts.navigation')
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -315,3 +317,4 @@
         });
     });
 </script>
+@include('layouts.footer')

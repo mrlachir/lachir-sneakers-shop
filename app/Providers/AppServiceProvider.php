@@ -3,21 +3,22 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use App\Models\Brand;
+use App\Models\Category;
 
 class AppServiceProvider extends ServiceProvider
 {
-    /**
-     * Register any application services.
-     */
-    public function register(): void
+    public function boot()
     {
-        //
+        View::composer('*', function ($view) {
+            $brands = Brand::take(4)->get();
+            $categories = Category::take(4)->get();
+            $view->with('brands', $brands)->with('categories', $categories);
+        });
     }
 
-    /**
-     * Bootstrap any application services.
-     */
-    public function boot(): void
+    public function register()
     {
         //
     }

@@ -1,3 +1,5 @@
+
+@include('layouts.navigation')
 <x-app-layout>
     <div class="wrapper">
         <div class="container">
@@ -122,3 +124,4 @@
         }
     </style>
 </x-app-layout>
+@include('layouts.footer')
