@@ -51,7 +51,7 @@
                     </div>
                     <div>
                         <label for="ccv">CCV</label>
-                        <input type="text" name="ccv" required>
+                        <input type="number" name="ccv" required>
                     </div>
                 </div>
                 <div class="btns">

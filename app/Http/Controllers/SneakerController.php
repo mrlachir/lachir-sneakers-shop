@@ -407,8 +407,10 @@ class SneakerController extends Controller
             ->unique();
 
         $averageRating = $sneaker->averageRating();
+        $topReviews = $sneaker->reviews()->orderBy('rating', 'desc')->take(7)->get();
 
-        return view('sneakers.show', compact('sneaker', 'cartQuantity', 'relatedSneakers', 'availableSizes', 'availableColors', 'averageRating'));
+
+        return view('sneakers.show', compact('sneaker', 'topReviews' , 'cartQuantity', 'relatedSneakers', 'availableSizes', 'availableColors', 'averageRating'));
     }
 
     public function addReview(Request $request, $id)

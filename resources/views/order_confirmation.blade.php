@@ -14,7 +14,7 @@
             </div>
 
             <div class="mt-6">
-                <a href="{{ route('home') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Return to Home</a>
+                <a href="{{ route('home') }}" class="bg-gray-800 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded">Return to Home</a>
             </div>
         </div>
     </div>
