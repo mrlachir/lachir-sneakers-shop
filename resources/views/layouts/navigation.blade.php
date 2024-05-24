@@ -52,27 +52,28 @@
                     
                     <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
                         <x-nav-link :href="route('sneakers.showAll.all')" :active="request()->routeIs('sneakers.showAll.all')">
-                            {{ __('All Sneakers') }}
+                            {{ __('All') }}
                         </x-nav-link>
                     </div>
                     <!-- Dynamically generated brands -->
                     @if(isset($brands))
+                    @foreach ($brands->take(4) as $brand)
                         <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
-                            @foreach ($brands as $brand)
                                 <x-nav-link :href="route('sneakers.showAll.brand', $brand->name)" >
                                     {{ $brand->name }}
                                 </x-nav-link>
+                                
+                            </div>
                             @endforeach
-                        </div>
                     @endif
                     @if(isset($categories))
+                    @foreach ($categories->take(4) as $category)
                         <div class="hidden space-x-8 sm:-my-px sm:ml-5 sm:flex">
-                            @foreach ($categories as $category)
                                 <x-nav-link :href="route('sneakers.showAll.category', $category->name)">
                                     {{ $category->name }}
                                 </x-nav-link>
+                            </div>
                             @endforeach
-                        </div>
                     @endif
 
                     @guest

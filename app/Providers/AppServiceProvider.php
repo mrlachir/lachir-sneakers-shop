@@ -11,11 +11,11 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        View::composer('*', function ($view) {
-            $brands = Brand::take(4)->get();
-            $categories = Category::take(4)->get();
-            $view->with('brands', $brands)->with('categories', $categories);
-        });
+        // View::composer('*', function ($view) {
+        //     $brands = Brand::take(4)->get();
+        //     $categories = Category::All();
+        //     $view->with('brands', $brands)->with('categories', $categories);
+        // });
     }
 
     public function register()

@@ -39,14 +39,13 @@ class HomeController extends Controller
 
         // Fetch data for top categories
         $topCategories = TopCategory::all();
+        $categories = Category::All();
 
         // $brands = Brand::all();
         $query = Brand::query();
         $brands = $query->paginate(6);
 
-
-
-        return view('index', compact('slideshows', 'featuredProducts', 'topCategories', 'brands'));
+        return view('index', compact('categories','slideshows', 'featuredProducts', 'topCategories', 'brands'));
     }
 
 

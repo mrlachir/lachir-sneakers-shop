@@ -93,14 +93,16 @@ class SneakerController extends Controller
         }
         // Add sorting options for other columns as needed
 
-        $sneakers = $query->paginate(10);
-        // $query = Sneaker::query();
+        $sneakers = $query->paginate(12);
+        // $query = Sneaker::query();*
+        $sizes = Sneaker::distinct()->pluck('size')->toArray();
+
 
 
         $categories = Category::all();
         $brands = Brand::all();
 
-        return view('admin.sneakers.index', compact('sneakers', 'categories', 'brands', 'existingNames', 'existingColors', 'existingBrands', 'existingCategories'));
+        return view('admin.sneakers.index', compact('sizes','sneakers', 'categories', 'brands', 'existingNames', 'existingColors', 'existingBrands', 'existingCategories'));
     }
     public function indexAll(Request $request)
     {
@@ -125,13 +127,15 @@ class SneakerController extends Controller
             });
         
         $this->applyFiltersAndSorting($request, $query);
-        $sneakers = $query->paginate(10);
+        $sneakers = $query->paginate(12);
 
         $categories = Category::all();
         $brands = Brand::all();
         $title = 'All Sneakers';
+        $sizes = Sneaker::distinct()->pluck('size')->toArray();
+
     
-        return view('sneakers.showAll', compact('sneakers', 'title', 'categories', 'brands', 'existingNames', 'existingColors', 'existingBrands', 'existingCategories', 'search'));
+        return view('sneakers.showAll', compact('sizes','sneakers', 'title', 'categories', 'brands', 'existingNames', 'existingColors', 'existingBrands', 'existingCategories', 'search'));
     }
     
     public function filterByBrand(Request $request, $brand)
@@ -142,15 +146,17 @@ class SneakerController extends Controller
         $query = Sneaker::where('brand_id', $brand->id);
         $this->applyFiltersAndSorting($request, $query);
     
-        $sneakers = $query->paginate(10);
+        $sneakers = $query->paginate(12);
         $categories = Category::all();
         $brands = Brand::all();
         $existingColors = Sneaker::pluck('color_code')->unique()->toArray();
         $existingBrands = Brand::pluck('name')->toArray();
         $existingCategories = Category::pluck('name')->toArray();
         $existingNames = Sneaker::pluck('name')->unique()->toArray();
+        $sizes = Sneaker::distinct()->pluck('size')->toArray();
+
     
-        return view('sneakers.showAll', compact('sneakers', 'title', 'existingNames', 'brands', 'categories', 'existingColors', 'existingBrands', 'existingCategories'));
+        return view('sneakers.showAll', compact('sizes','sneakers', 'title', 'existingNames', 'brands', 'categories', 'existingColors', 'existingBrands', 'existingCategories'));
     }
     
     public function filterByCategory(Request $request, $category)
@@ -161,15 +167,17 @@ class SneakerController extends Controller
         $query = Sneaker::where('category_id', $category->id);
         $this->applyFiltersAndSorting($request, $query);
     
-        $sneakers = $query->paginate(10);
+        $sneakers = $query->paginate(12);
         $categories = Category::all();
         $brands = Brand::all();
         $existingColors = Sneaker::pluck('color_code')->unique()->toArray();
         $existingBrands = Brand::pluck('name')->toArray();
         $existingCategories = Category::pluck('name')->toArray();
         $existingNames = Sneaker::pluck('name')->unique()->toArray();
+        $sizes = Sneaker::distinct()->pluck('size')->toArray();
+
     
-        return view('sneakers.showAll', compact('sneakers', 'title', 'existingNames', 'brands', 'categories', 'existingColors', 'existingBrands', 'existingCategories'));
+        return view('sneakers.showAll', compact('sizes','sneakers', 'title', 'existingNames', 'brands', 'categories', 'existingColors', 'existingBrands', 'existingCategories'));
     }
     
     private function applyFiltersAndSorting(Request $request, $query)
@@ -180,6 +188,7 @@ class SneakerController extends Controller
             'category_id' => '=',
             'size' => 'like',
             'stock' => '>=',
+            'color_code' => '=',
         ];
     
         foreach ($filters as $field => $operator) {

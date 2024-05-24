@@ -24,7 +24,7 @@ class SlideshowController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image_path' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
             'link' => 'nullable|url', // Add validation for link
             'order' => 'required|integer',
             'is_active' => 'required|boolean',
@@ -63,7 +63,7 @@ class SlideshowController extends Controller
     {
         // Validate the request data
         $request->validate([
-            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Image is optional in the update
+            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif', // Image is optional in the update
             'link' => 'required|url',
             'title' => 'required|string|max:255',
             'description' => 'nullable|string|max:255',

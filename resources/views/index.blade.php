@@ -5,12 +5,14 @@
         <!-- slides -->
         <div>
             <div class="slider">
-                @foreach ($slideshows->where('is_active', true) as $slideshow)
-                    <div>
-                        <a href="{{ $slideshow->link }}"><img src="{{ Storage::url($slideshow->image_path) }}"
-                                alt="{{ $slideshow->title }}"></a>
-                    </div>
-                @endforeach
+                @foreach ($slideshows->where('is_active', true)->sortBy('order') as $slideshow)
+    <div>
+        <a href="{{ $slideshow->link }}">
+            <img src="{{ Storage::url($slideshow->image_path) }}" alt="{{ $slideshow->title }}">
+        </a>
+    </div>
+@endforeach
+
 
             </div>
             <div class="ctrl-container">
@@ -26,16 +28,16 @@
                 <div style="margin-top:60px;width: 90%; border-top: #606060 solid 2px;">
                 </div>
                 <h2
-                    style="margin-top:-40px; padding: 0 30px; background-color: #fff;
+                    style="margin-top:-40px; font-size:50px; padding: 0 30px; background-color: #fff;
                 font-size: 50; width: fit-content;">
                     <b>BRANDS</b>
                 </h2>
             </div>
             <dir class="images-tag flex items-center justify-center mt-2 gap-2">
                 @foreach ($brands as $brand)
-                    <a href="{{ route('login') }}">
-                        <div class="images-tag-contener images-tag flex items-center justify-center mt-2">
-                            <img src="{{ Storage::url($brand->image_path) }}" alt="{{ $brand->name }}">
+                    <a href="all/sneakers/brand/{{ $brand->name }}">
+                        <div style="width: 200px;" class="images-tag-contener images-tag flex items-center justify-center mt-2">
+                            <img src="{{ Storage::url($brand->image_path) }}" alt="{{ $brand->name }} " >
                             {{-- <div>{{ $brand->name }}</div> --}}
                         </div>
                     </a>
@@ -45,53 +47,44 @@
 
 
         <!-- Featured Products -->
-        <div style="background-color: #F3F4F6; height:fit-content;padding-bottom: 50px">
+        <div style="background-color: rgb(225, 228, 232); height:fit-content;padding-bottom: 50px">
             @if ($featuredProducts->count() > 0)
                 <div style="" class="flex flex-col items-center justify-center mt-4">
                     <div style="margin-top:60px;width: 90%; border-top: #606060 solid 2px;">
                     </div>
                     <h2
-                        style="margin-top:-40px; padding: 0 30px; background-color: #F3F4F6;
+                        style="margin-top:-40px; font-size:50px; padding: 0 30px; background-color: rgb(225, 228, 232);
             font-size: 50; width: fit-content;">
                         <b>Featured Sneakers</b>
                     </h2>
 
                 </div>
-                {{-- @php
-                    $brandName = 'nike'; // This can be a dynamic value
-                @endphp --}}
                 <a href="all/sneakers">
                     <button class="view-all-btn ">View all</button>
                 </a>
 
 
                 <div class="images-tag flex items-center justify-center mt-2 gap-3">
-                    <div class="p-6 border-b border-gray-200 flex items-center justify-center">
-                        <div class="gap-4 flex items-center justify-center" style="width: 60%">
+                    <div class="p-6  border-gray-200 flex items-center justify-center">
+                        <div class="gap-4 flex items-center justify-center" style="width: 100%">
                             @foreach ($featuredProducts as $featuredProduct)
                                 @if ($featuredProduct->sneaker->stock >= 1)
                                     <a href="{{ route('sneakers.show', $featuredProduct->sneaker->id) }}">
-                                        <div class="p-4 border rounded-lg bg-white">
+                                        <div  class="border rounded-lg bg-white">
                                             <!-- Sneaker Image -->
-                                            <div class="relative mb-4">
+                                            <div style="overflow: hidden" class="relative mb-4">
                                                 <img src="{{ Storage::url($featuredProduct->sneaker->image_path) }}"
                                                     alt="{{ $featuredProduct->sneaker->name }}"
                                                     class="w-full h-40 object-cover">
                                             </div>
                                             <!-- Sneaker Info -->
-                                            <div class="text-gray-800 font-semibold mb-1">{{ $featuredProduct->order }}
-                                            </div>
-                                            <div class="text-gray-800 font-semibold">
+                                            
+                                            <div class="px-2 mt-2 text-gray-700">
                                                 {{ $featuredProduct->sneaker->name }}</div>
-                                            <div class="mt-2 text-gray-700">Brand:
-                                                {{ $featuredProduct->sneaker->brand->name }}</div>
-                                            <div class="mt-2 text-gray-700">Category:
-                                                {{ $featuredProduct->sneaker->category->name }}</div>
-                                            <div class="mt-2 text-gray-700">Price:
-                                                ${{ $featuredProduct->sneaker->price }}</div>
-                                            <button class="add-to-cart"
-                                                data-sneaker-id="{{ $featuredProduct->sneaker->id }}">Add to
-                                                Cart</button>
+                                            <div class="px-2 mt-2 text-green-700">
+                                                ${{ $featuredProduct->sneaker->price }}
+                                            </div>
+                                                
                                         </div>
                                     </a>
                                 @endif
@@ -99,8 +92,7 @@
                         </div>
                     </div>
                 </div>
-            @else
-                <p>No featured products found.</p>
+
             @endif
         </div>
 
@@ -110,16 +102,17 @@
                 <div style="margin-top:60px;width: 90%; border-top: #606060 solid 2px;">
                 </div>
                 <h2
-                    style="margin-top:-40px; padding: 0 30px; background-color: #fff;
+                    style="margin-top:-40px; font-size:50px; padding: 0 30px; background-color: #fff;
                 font-size: 50; width: fit-content;">
-                    <b>HOT CATEGORIES</b>
+                    <b>TOP CATEGORIES</b>
                 </h2>
             </div>
-            <dir class="images-tag flex items-center justify-center mt-2 gap-2">
+
+            <dir  class="images-tag flex items-center justify-center mx-10 gap-2">
                 @foreach ($topCategories as $topcategory)
-                    <a href="{{ route('login') }}">
-                        <div class="images-tag-contener images-tag flex items-center justify-center mt-2">
-                            <img src="{{ Storage::url($topcategory->image_path) }}" alt="{{ $topcategory->name }}">
+                    <a href="http://127.0.0.1:8000/all/sneakers/category/{{ $topcategory->category->name }}">
+                        <div  class="images-tag-contener images-tag flex items-center justify-center mt-2">
+                            <img  style="width: 100%;" src="{{ Storage::url($topcategory->image_path) }}" alt="{{ $topcategory->name }}">
                         </div>
                     </a>
                 @endforeach
@@ -150,10 +143,10 @@
     .custom-prev {
         background: none;
 
-        padding-bottom: 31px;
+        padding-bottom: 45px;
         width: 30px;
         height: 30px;
-        color: f3f3f3;
+        /* color: #f3f3f3; */
         font-size: 2rem;
         cursor: pointer;
         margin: 0 10px;
@@ -188,11 +181,12 @@
 
     .view-all-btn {
         margin-left: 80%;
-        margin-top: -52px;
-        font-size: 20px;
+        position: absolute ;
+        margin-top: -55px;
+        font-size: 25px;
         border: #333 solid 1px;
         padding: 0 10px;
-        background-color: #F3F4F6;
+        background-color: rgb(225, 228, 232);
         transition: transform .4s ease;
     }
 
@@ -210,7 +204,6 @@
     }
 
     .images-tag img {
-        width: 100%;
         height: auto;
         margin: 0;
         transition: transform .4s ease, -webkit-transform .4s ease !important;

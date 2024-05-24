@@ -17,7 +17,7 @@
             --main-color: #323232;
             --main-focus: #2d8cf0;
             width: 230px;
-            height: 300px;
+            height: fit-content;
             background: var(--bg-color);
             border: 2px solid var(--main-color);
             box-shadow: 4px 4px var(--main-color);
@@ -25,37 +25,35 @@
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
-            padding: 20px;
+            /* padding: 20px; */
             gap: 10px;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            overflow: hidden;
         }
 
         .card:last-child {
             justify-content: flex-end;
         }
 
-        .card-img {
-            transition: all 0.5s;
-            display: flex;
-            justify-content: center;
-        }
+        .card img {
+        height: auto;
+        margin: 0;
+        transition: transform .4s ease, -webkit-transform .4s ease !important;
+    }
 
-        .card-img .img {
-            width: 100px;
-            height: 100px;
-            background-size: cover;
-            border-radius: 5px;
-        }
+    .card img:hover {
+        transform: scale(1.1);
+    }
 
         .card-title {
-            font-size: 20px;
+            font-size: 10px;
             font-weight: 500;
-            text-align: center;
+            text-align: left;
             color: var(--font-color);
         }
 
         .card-subtitle {
-            font-size: 14px;
+            font-size: 10px;
             font-weight: 400;
             color: var(--font-color-sub);
         }
@@ -86,35 +84,20 @@
         }
 
         .card-btn {
-            height: 35px;
-            background: var(--bg-color);
-            border: 2px solid var(--main-color);
+            height: 30px;
+            color: #fff;
+            background: #323232;
+            border: 2px solid #323232;
             border-radius: 5px;
-            padding: 0 15px;
+            padding: 0 10px;
+            margin: 5px 0 0 0;
             transition: all 0.3s;
         }
 
-        .card-btn svg {
-            width: 100%;
-            height: 100%;
-            fill: var(--main-color);
-            transition: all 0.3s;
-        }
-
-        .card-img:hover {
-            transform: translateY(-3px);
-        }
 
         .card-btn:hover {
-            border: 2px solid var(--main-focus);
-        }
-
-        .card-btn:hover svg {
-            fill: var(--main-focus);
-        }
-
-        .card-btn:active {
-            transform: translateY(3px);
+            color: #323232;
+            background: #fff;
         }
 
         .filter-container {
@@ -125,7 +108,7 @@
 
         .products-container {
             width: 75%;
-            padding: 20px;
+            padding: 0 40px;
             display: flex;
             flex-wrap: wrap;
             gap: 20px;
@@ -139,19 +122,19 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-    <!-- Search Form -->
-    <form action="{{ route('sneakers.showAll.all') }}" method="GET" class="mb-4">
-        <div class="hidden sm:flex sm:items-center sm:ml-6">
-            <div class="relative">
-                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                    </svg>
+            <!-- Search Form -->
+            <form action="{{ route('sneakers.showAll.all') }}" method="GET" class="mb-4">
+                <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <div class="relative">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <svg class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <input type="text" name="search" id="search" style="border-radius: 10px;" class="block w-full pl-10 pr-2 py-1 border border-gray-300 leading-5 bg-white placeholder-gray-500 shadow-sm focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-gray-600 focus:border-gray-600 sm:text-sm" placeholder="Search..." value="{{ request('search') }}">
+                    </div>
                 </div>
-                <input type="text" name="search" id="search" style="border-radius: 10px;" class="block w-full pl-10 pr-2 py-1 border border-gray-300 leading-5 bg-white placeholder-gray-500 shadow-sm focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-gray-600 focus:border-gray-600 sm:text-sm" placeholder="Search..." value="{{ request('search') }}">
-            </div>
-        </div>
-    </form>
+            </form>
 
             <div class="container">
                 <!-- Filter Form -->
@@ -161,24 +144,8 @@
                             <div class="mt-2 flex justify-end">
                                 <button type="submit" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Filter</button>
                             </div>
-                            <div>
-                                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                                <select id="name" name="name" class="mt-1 block w-full">
-                                    <option value="">All Names</option>
-                                    @foreach ($existingNames as $name)
-                                        <option value="{{ $name }}" {{ request('name') == $name ? 'selected' : '' }}>
-                                            {{ $name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
+                            
                 
-                            @php
-                                // Check if the current URL contains 'brand'
-                                $isBrandPage = request()->is('all/sneakers/brand/*');
-                            @endphp
-                
-                            @if (!$isBrandPage)
                                 <div>
                                     <label for="brand_id" class="block text-sm font-medium text-gray-700">Brand</label>
                                     <select id="brand_id" name="brand_id" class="mt-1 block w-full">
@@ -190,7 +157,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            @endif
+                        
                 
                             <div>
                                 <label for="category_id" class="block text-sm font-medium text-gray-700">Category</label>
@@ -206,21 +173,29 @@
                 
                             <div>
                                 <label for="color_code" class="block text-sm font-medium text-gray-700">Color</label>
-                                <div class="mt-1 block w-full">
+                                <div class="mt-1 block w-full flex flex-wrap">
                                     @foreach ($existingColors as $color)
-                                        <div class="flex items-center">
+                                        <div class="flex items-center mr-4 mb-2">
                                             <input type="checkbox" id="color_code_{{ $color }}" name="color_code[]" value="{{ $color }}"
                                                 {{ in_array($color, request('color_code', [])) ? 'checked' : '' }}>
-                                            <label for="color_code_{{ $color }}" class="ml-2 text-sm text-gray-700">{{ $color }}</label>
+                                            <label for="color_code_{{ $color }}" class="ml-2 text-sm text-gray-700" style="width: 45px;">{{ $color }}</label>
                                         </div>
                                     @endforeach
                                 </div>
                             </div>
+                            
+                            
                 
                             <div>
                                 <label for="size" class="block text-sm font-medium text-gray-700">Size</label>
-                                <input id="size" name="size" type="text" class="mt-1 block w-full" value="{{ request('size') }}">
+                                <select id="size" name="size" class="mt-1 block w-full">
+                                    @foreach($sizes as $size)
+                                        <option value="{{ $size }}">{{ $size }}</option>
+                                    @endforeach
+                                </select>
                             </div>
+                            
+                            
                 
                             <div>
                                 <label for="price" class="block text-sm font-medium text-gray-700">Price Range</label>
@@ -238,7 +213,7 @@
                         <div class="flex flex-wrap justify-between items-center mt-4">
                             <div class="mt-2 flex items-center">
                                 <label for="sort_by" class="block text-sm font-medium text-gray-700">Sort By</label>
-                                <select id="sort_by" name="sort_by" class="ml-2 block w-full max-w-xs">
+                                <select id="sort_by" name="sort_by" class="ml-2 block w-auto max-w-xs">
                                     <option value="name_asc" {{ request('sort_by') == 'name_asc' ? 'selected' : '' }}>Name (A-Z)</option>
                                     <option value="name_desc" {{ request('sort_by') == 'name_desc' ? 'selected' : '' }}>Name (Z-A)</option>
                                     <option value="brand_asc" {{ request('sort_by') == 'brand_asc' ? 'selected' : '' }}>Brand (A-Z)</option>
@@ -266,34 +241,31 @@
                     @if ($sneaker->stock>0)
                     <a href="{{ route('sneakers.show', $sneaker->id) }}">
                         <div class="card">
-                            <div class="card-img">
+                            {{-- <div class="card-img">
                                 <div class="img"
                                     style="background-image: url('{{ Storage::url($sneaker->image_path) }}');"></div>
+                            </div> --}}
+                            <div style="overflow: hidden;">
+                                <img style="width: auto; height: auto;" src="{{ Storage::url($sneaker->image_path) }}" alt="">
                             </div>
-                            <div class="card-title">{{ $sneaker->name }}</div>
-                            <div class="card-subtitle">{{ $sneaker->brand->name }}</div>
-                            <div class="card-divider"></div>
-                            <div class="card-footer">
-                                <div class="card-price">${{ $sneaker->price }}</div>
-                                <div class="card-actions">
-                                    <form action="{{ route('cart.add', $sneaker->id) }}" method="POST">
-                                        @csrf
-                                        <button class="add-to-cart card-btn" data-sneaker-id="{{ $sneaker->id }}">
-                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="2"
-                                                stroke-linecap="round" stroke-linejoin="round"
-                                                class="feather feather-shopping-cart">
-                                                <circle cx="9" cy="21" r="1"></circle>
-                                                <circle cx="20" cy="21" r="1"></circle>
-                                                <path
-                                                    d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h8.64a2 2 0 0 0 2-1.61L23 6H6">
-                                                </path>
-                                            </svg>
-                                        </button>
+                            <div style="padding: 0 20px 20px 20px;">
+                                <div class="card-title">{{ $sneaker->name }}</div>
+                                <div class="card-subtitle">{{ $sneaker->brand->name }}</div>
+                                <div class="card-divider"></div>
+                                <div class="card-footer">
+                                    <div class="card-price">${{ $sneaker->price }}</div>
+                                    <div class="card-actions">
+                                        <form action="{{ route('cart.add', $sneaker->id) }}" method="POST">
+                                            @csrf
+                                            <button class="add-to-cart card-btn" data-sneaker-id="{{ $sneaker->id }}">
+                                                Add to cart
+                                            </button>
 
-                                    </form>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
+                            
                         </div>
                     </a>
                     {{-- @else
