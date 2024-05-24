@@ -409,8 +409,9 @@ class SneakerController extends Controller
         $averageRating = $sneaker->averageRating();
         $topReviews = $sneaker->reviews()->orderBy('rating', 'desc')->take(7)->get();
 
-
-        return view('sneakers.show', compact('sneaker', 'topReviews' , 'cartQuantity', 'relatedSneakers', 'availableSizes', 'availableColors', 'averageRating'));
+        $brands = Brand::all();
+        $categories= Category::all();
+        return view('sneakers.show', compact('brands','categories','sneaker', 'topReviews' , 'cartQuantity', 'relatedSneakers', 'availableSizes', 'availableColors', 'averageRating'));
     }
 
     public function addReview(Request $request, $id)

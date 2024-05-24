@@ -139,8 +139,6 @@
                     @auth
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <x-dropdown align="right" width="48">
-                            
-
                             <x-slot name="trigger">
                                 <a  class="text-sm text-gray-700 underline">
                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="width: 20px;" zoomAndPan="magnify" viewBox="0 0 375 374.999991"  preserveAspectRatio="xMidYMid meet" version="1.0"><defs><clipPath id="ddd6a20143"><path d="M 7.015625 7.015625 L 367.765625 7.015625 L 367.765625 367.765625 L 7.015625 367.765625 Z M 7.015625 7.015625 " clip-rule="nonzero"/></clipPath></defs><g clip-path="url(#ddd6a20143)"><path fill="#000000" d="M 361.921875 367.742188 L 12.890625 367.742188 C 9.730469 367.742188 7.171875 365.179688 7.171875 362.019531 L 7.171875 329.414062 C 7.171875 275.167969 51.300781 231.035156 105.550781 231.035156 L 269.265625 231.035156 C 323.511719 231.035156 367.644531 275.167969 367.644531 329.414062 L 367.644531 362.019531 C 367.644531 365.179688 365.082031 367.742188 361.921875 367.742188 Z M 187.40625 215.652344 C 129.886719 215.652344 83.089844 168.855469 83.089844 111.335938 C 83.089844 53.8125 129.886719 7.015625 187.40625 7.015625 C 244.929688 7.015625 291.722656 53.8125 291.722656 111.335938 C 291.722656 168.855469 244.929688 215.652344 187.40625 215.652344 Z M 187.40625 215.652344 " fill-opacity="1" fill-rule="nonzero"/></g></svg>                        </a>
@@ -168,7 +166,7 @@
                     @else
                     <!-- Login Button (Conditionally shown) -->
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">
+                        <a href="{{ route('profile.edit') }}" class="text-sm text-gray-700 underline">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="width: 20px;" zoomAndPan="magnify" viewBox="0 0 375 374.999991"  preserveAspectRatio="xMidYMid meet" version="1.0"><defs><clipPath id="ddd6a20143"><path d="M 7.015625 7.015625 L 367.765625 7.015625 L 367.765625 367.765625 L 7.015625 367.765625 Z M 7.015625 7.015625 " clip-rule="nonzero"/></clipPath></defs><g clip-path="url(#ddd6a20143)"><path fill="#000000" d="M 361.921875 367.742188 L 12.890625 367.742188 C 9.730469 367.742188 7.171875 365.179688 7.171875 362.019531 L 7.171875 329.414062 C 7.171875 275.167969 51.300781 231.035156 105.550781 231.035156 L 269.265625 231.035156 C 323.511719 231.035156 367.644531 275.167969 367.644531 329.414062 L 367.644531 362.019531 C 367.644531 365.179688 365.082031 367.742188 361.921875 367.742188 Z M 187.40625 215.652344 C 129.886719 215.652344 83.089844 168.855469 83.089844 111.335938 C 83.089844 53.8125 129.886719 7.015625 187.40625 7.015625 C 244.929688 7.015625 291.722656 53.8125 291.722656 111.335938 C 291.722656 168.855469 244.929688 215.652344 187.40625 215.652344 Z M 187.40625 215.652344 " fill-opacity="1" fill-rule="nonzero"/></g></svg>                        </a>
                     </div>
                     @endauth

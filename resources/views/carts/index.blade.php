@@ -17,8 +17,10 @@
                             <div class="flex justify-between items-center border-b border-gray-200 py-4">
                                 <div style="width: 50%" class="flex">
                                     <div class="mr-4 w-24 h-24">
+                                        <a href="{{ route('sneakers.show', $cart->sneaker->id) }}">
                                         <img src="{{ Storage::url($cart->sneaker->image_path) }}"
                                             alt="{{ $cart->sneaker->name }}" class="w-full h-full object-cover rounded">
+                                        </a>
                                     </div>
                                     <div>
                                         <h3 class="text-lg font-semibold text-gray-800">{{ $cart->sneaker->name }}</h3>

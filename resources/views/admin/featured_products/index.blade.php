@@ -25,13 +25,13 @@
                         <h3 class="text-lg font-semibold mb-2">Featured Products</h3>
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                             @foreach ($featuredProducts as $featuredProduct)
-                                <div class="p-4 border rounded-lg">
+                                <div style="overflow: hidden" class=" border rounded-lg">
                                     <!-- Sneaker Image -->
-                                    <img src="{{ Storage::url($featuredProduct->sneaker->image_path) }}" alt="{{ $featuredProduct->sneaker->name }}" class="w-full h-40 object-cover mb-2">
-                                    
-                                    <!-- Sneaker Info -->
-                                    <div class="text-gray-800 font-semibold">{{ $featuredProduct->order }}</div>
-                                    <div class="text-gray-800 font-semibold">{{ $featuredProduct->sneaker->name }}</div>
+                                    <img src="{{ Storage::url($featuredProduct->sneaker->image_path) }}" alt="{{ $featuredProduct->sneaker->name }}" class="w-full h-auto object-cover mb-2">
+                                    <div class="p-4">
+                                            <!-- Sneaker Info -->
+                                    <div class="text-gray-800 font-semibold">Order: {{ $featuredProduct->order }}</div>
+                                    <div class="mt-2 text-gray-800">Name: {{ $featuredProduct->sneaker->name }}</div>
                                     <div class="mt-2 text-gray-700">Brand: {{ $featuredProduct->sneaker->brand->name }}</div>
                                     <div class="mt-2 text-gray-700">Category: {{ $featuredProduct->sneaker->category->name }}</div>
                                     <div class="mt-2 text-gray-700">Price: ${{ $featuredProduct->sneaker->price }}</div>
@@ -49,6 +49,8 @@
                                             <button type="submit" class="text-red-500 hover:text-red-700">Delete</button>
                                         </form>
                                     </div>
+                                    </div>
+                                    
                                 </div>
                             @endforeach
                         </div>

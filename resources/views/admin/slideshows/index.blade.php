@@ -27,10 +27,10 @@
                                 <table class="min-w-full divide-y divide-gray-200">
                                     <thead class="bg-gray-50">
                                         <tr>
-                                            <th
+                                            <th style="width: 30%;"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Slide Image</th>
-                                            <th
+                                            <th style="width: 50%;"
                                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                                 Info</th>
                                             <th
@@ -76,7 +76,7 @@
                                                         </dl>
                                                     </div>
                                                 </td>
-                                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                                <td class="px-6 py-4 whitespace-nowrap text-left text-sm font-medium">
                                                     <a href="{{ route('admin.slideshows.edit', $slideshow->id) }}"
                                                         class="text-indigo-600 hover:text-indigo-900 mr-4">Edit</a>
                                                     <form

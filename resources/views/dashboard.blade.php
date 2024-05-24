@@ -44,7 +44,7 @@
                                 class="h-full flex flex-col justify-center items-center p-6 bg-blue-300 border-b border-gray-200">
                                 <h3 class="font-semibold text-xl mb-2 dashboard-heading">Total Income</h3>
                                 <div class="dashboard-content">
-                                    <p class="text-4xl">{{ $totalIncome }}</p>
+                                    <p class="text-4xl">${{ $totalIncome }}</p>
                                 </div>
                             </div>
                         </div>
@@ -64,7 +64,7 @@
                         <div class="bg-yellow-200 overflow-hidden shadow-sm sm:rounded-lg dashboard-section">
                             <div
                                 class="h-full flex flex-col justify-center items-center p-6 bg-yellow-300 border-b border-gray-200">
-                                <h3 class="font-semibold text-xl mb-2 dashboard-heading">Total Shoes</h3>
+                                <h3 class="font-semibold text-xl mb-2 dashboard-heading">Total Shoes in stock</h3>
                                 <div class="dashboard-content">
                                     <p class="text-4xl">{{ $totalShoes }}</p>
                                 </div>

@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Cart;
+use App\Models\Category;
 use App\Models\Sneaker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -11,12 +13,15 @@ class CartController extends Controller
 {
     public function index()
     {
+        $brands = Brand::all();
+        $categories= Category::all();
+
         $carts = Cart::with('sneaker')->get();
         $totalPrice = $carts->sum(function ($item) {
             return $item->sneaker->price * $item->quantity;
         });
 
-        return view('carts.index', compact('carts', 'totalPrice'));
+        return view('carts.index', compact('categories','brands','carts', 'totalPrice'));
     }
 
     public function store(Request $request, Sneaker $sneaker)
